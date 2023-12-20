@@ -4,8 +4,11 @@ export function Ship(length = 2) {
 
     function getLength() { return length; };
     function getHitCount() { return hitCount; };
-    function hit() { hitCount++; };
-    function isSunk() { return hitCount >= length ? true : false; }
+    function hit() { 
+        hitCount++;
+        sunk = hitCount >= length ? true : false;
+     };
+    function isSunk() { return sunk; }
 
     return { getLength, getHitCount, hit, isSunk };
 }
