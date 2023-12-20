@@ -155,3 +155,28 @@ test('Gameboard: allShipsSunk() returns true when all ships are sunk.', () => {
     board.receiveAttack(7,9);
     expect(board.allShipsSunk()).toBe(true);
 });
+
+
+
+// Player
+test('Player: Player() returns an object.', () => {
+    expect(Player()).toBeTruthy();
+})
+
+// setHit()
+test('Player: setHit() sets hits in 2D array tracking attacks.', () => {
+    const player = Player();
+    player.setHit([2,2]);
+    const attacks = player.getAttacks();
+    expect(attacks[2][2]).toBe('hit');
+})
+
+// setMiss()
+test('Player: setMiss() sets misses in 2D array tracking attacks.', () => {
+    const player = Player();
+    player.setMiss([2,2]);
+    const attacks = player.getAttacks();
+    expect(attacks[2][2]).toBe('miss');
+})
+
+
