@@ -13,6 +13,9 @@ export function Gameboard() {
     const ships = [];
     const missedShots = [];
 
+    // RECENT
+    const allShots = [];
+
 
     function getBoard() {
         return board;
@@ -111,10 +114,19 @@ export function Gameboard() {
 
         if (board[x][y] === null) {
             missedShots.push([x,y]);
+            board[x][y] = 'M';
+            allShots.push([x,y]);
+
             return false;
         }
 
         board[x][y].hit();
+
+        // RECENT
+        board[x][y] = 'H';
+
+        allShots.push([x,y]);
+
         return true;
     }   
 
@@ -125,6 +137,10 @@ export function Gameboard() {
         }
         return true;
     }
+
+    function getAllShots() {
+        return allShots;
+    }
     
-    return { getBoard, placeShip, receiveAttack, getMissedShots, allShipsSunk };
+    return { getBoard, placeShip, receiveAttack, getMissedShots, allShipsSunk, getAllShots };
 }
